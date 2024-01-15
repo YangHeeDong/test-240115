@@ -1,0 +1,19 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="mt-2">
+    <form method="POST"  th:action="@{/article/create}" th:object="${article}">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </div>
+        <input type="hidden" name="id" id="name" th:value="${article.id}">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" th:value="${article.title}">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Password</label>
+            <textarea class="form-control" id="content" name="content" rows="20" th:field="${article.content}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">수정</button>
+    </form>
+</div>
+</html>

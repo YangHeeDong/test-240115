@@ -1,0 +1,26 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="mt-2">
+    <form method="POST"  th:action="@{/member/create}" th:object="${memberDto}">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </div>
+        <div class="mb-3">
+            <label for="loginId" class="form-label">LoginId</label>
+            <input type="text" class="form-control" id="loginId" name="loginId" placeholder="LoginId를 입력해주세요">
+        </div>
+        <div class="mb-3">
+            <label for="nickname" class="form-label">Nickname</label>
+            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Passsword</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력해 주세요">
+        </div>
+        <div class="mb-3">
+            <label for="passwordConfirm" class="form-label">Passsword confirm</label>
+            <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="비밀번호 확인을 입력해 주세요">
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">가입</button>
+    </form>
+</div>
+</html>

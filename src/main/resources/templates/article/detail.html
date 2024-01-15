@@ -1,0 +1,21 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="mt-2">
+    <div class="card">
+        <div class="card-header">
+            <h5 style="display: inline-block;">No.</h5>
+            <h5 style="display: inline-block;" th:text="${article.id}"></h5>
+        </div>
+
+        <div class="card-body">
+            <h1 class="card-title" th:text="${article.title}"></h1>
+            <p class="card-text" th:text="${article.content}"></p>
+            <div sec:authorize="isAuthenticated()"
+                 th:if="${article.member != null and #authentication.getPrincipal().getUsername() == article.member.loginId}">
+                <a href="#" th:href="@{|/article/modify/${article.id}|}" class="btn btn-primary btn-sm">수정</a>
+                <a href="#" th:href="@{|/article/delete/${article.id}|}" class="btn btn-danger btn-sm">삭제</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</html>

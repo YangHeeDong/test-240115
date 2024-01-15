@@ -1,0 +1,26 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="mt-2">
+
+<table class="table  text-center">
+    <thead class="table-dark">
+    <tr>
+        <th class="col-1">번호</th>
+        <th class="col-9">제목</th>
+        <th class="col-2">작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="article : ${articles}">
+        <td th:text="${article.id}"></td>
+        <td class="text-start">
+            <a th:href="@{|/article/detail/${article.id}|}" th:text="${article.title}"></a>
+        </td>
+        <td th:text="${#temporals.format(article.createDate, 'yy-MM-dd')}"></td>
+    </tr>
+    </tbody>
+</table>
+    <div class="nav-item" sec:authorize="isAuthenticated()">
+        <a class="nav-link" href="/article/create" >등록</a>
+    </div>
+</div>
+</html>
